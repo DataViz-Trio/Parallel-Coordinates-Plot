@@ -25,7 +25,7 @@ Open the pcp.html file in VSCode and start a Live Server using the "Live Server"
 The pcp.html file links the pcp.js file. The pcp.js file contains the logic of plotting the PCPs:
 
 - The 'ucrime.csv' dataset is first loaded using the **d3** library.
-- The plotting of the PCPs were done using the plotly.js library. Refer to the documentation here [^1] for more information.
+- The plotting of the PCPs were done using the plotly.js library. Refer to the documentation[^1] for more information.
 - The unpack function is used to extract and parse all the values of the *key* column from all the rows of the dataset. 
 - The following code assigns the color red to all Northern States and blue to the sourthern states:
 ```js
