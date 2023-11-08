@@ -15,3 +15,46 @@ The PCP uses a crime dataset (different from the one used for treemap). Each row
 - Time : average time in months served by offenders in state prisons before their first release
 
 There were no NULL or BAD_VALUE values in the dataset. Hence, no data preprocessing was required for the dataset. The original dataset was available only as a text file but the javascript library required a csv file. Hence a simple Python code was written to convert the text file to a csv file.
+
+## How to run
+
+Open the pcp.html file in VSCode and start a Live Server using the "Live Server" extension.
+
+## Implementation
+
+The pcp.html file links the pcp.js file. The pcp.js file contains the logic of plotting the PCPs:
+
+- The 'ucrime.csv' dataset is first loaded using the **d3** library.
+- The plotting of the PCPs were done using the plotly.js library. Refer to the documentation here [^1] for more information.
+- The unpack function is used to extract and parse all the values of the *key* column from all the rows of the dataset. 
+- The following code assigns the color red to all Northern States and blue to the sourthern states:
+```js
+line: {
+    color: unpack(data, 'So'),
+    colorscale: [
+        [0.0, 'red'],
+        [1.0, 'blue']
+    ]
+},
+```
+- The following code is used to plot values of the axes on the PCP:
+
+```js
+dimensions: [
+    {
+        label: 'Mean Years of Schooling',
+        values: unpack(data, 'Ed')
+    },
+    {
+        label: 'Unemployment in males aged 14-24',
+        values: unpack(data, 'U1')
+    }, 
+    {
+        label: 'Unemployment in males aged 35-39',
+        values: unpack(data, 'U2')
+    },
+    
+]
+```
+
+[^1]: https://plotly.com/javascript/parallel-coordinates-plot/
